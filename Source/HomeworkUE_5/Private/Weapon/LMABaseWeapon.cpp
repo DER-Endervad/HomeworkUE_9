@@ -34,9 +34,7 @@ void ALMABaseWeapon::BeginPlay() {
 	CurrentAmmoWeapon = AmmoWeapon;
 }
 
-void ALMABaseWeapon::Shoot()
-{
-	FireAnimation = true;
+void ALMABaseWeapon::Shoot() {
 	const FTransform SocketTransform = WeaponComponent->GetSocketTransform("Muzzle");
 	const FVector TraceStart = SocketTransform.GetLocation();
 	const FVector ShootDirection = SocketTransform.GetRotation().GetForwardVector();
@@ -57,7 +55,6 @@ void ALMABaseWeapon::Shoot()
 
 
 	DecrementBullets();
-	//FireAnimation = false;
 }
 
 void ALMABaseWeapon::DecrementBullets()

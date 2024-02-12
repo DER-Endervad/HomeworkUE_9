@@ -62,9 +62,6 @@ protected:
 
 	void SpawnTrace(const FVector& TraceStart, const FVector& TraceEnd);
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Fire")
-	bool FireAnimation = false;
-
 	virtual void BeginPlay() override;
 
 	void Shoot();

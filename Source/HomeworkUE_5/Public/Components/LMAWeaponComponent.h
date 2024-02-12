@@ -21,6 +21,7 @@ public:
 	void FireStop();
 	void Reload();
 	void ThisReload();
+	void DestroyWeapon();
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
@@ -45,6 +46,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	bool GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon) const;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Fire")
+	bool FireAnimation = false;
 
 public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

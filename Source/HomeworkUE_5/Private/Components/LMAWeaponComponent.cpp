@@ -16,6 +16,7 @@ void ULMAWeaponComponent::Fire() {
 
 void ULMAWeaponComponent::FireStop() {
 	IsFire = false;
+	FireAnimation = false;
 }
 
 void ULMAWeaponComponent::BeginPlay()
@@ -43,16 +44,24 @@ void ULMAWeaponComponent::ThisReload() {
 	Character->PlayAnimMontage(ReloadMontage);
 }
 
+void ULMAWeaponComponent::DestroyWeapon() {
+	Weapon->K2_DestroyActor();
+}
+
 void ULMAWeaponComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	if (IsValid(Weapon) && !AnimReloading && IsFire) {
 		FireTimeNow = world->GetTimeSeconds();
+		FireAnimation = true;
 		if ((FireTimeNow - FireTimeOld) >= FireTime) {
 			Weapon->Fire();
 			FireTimeOld = FireTimeNow;
 		}
+	}
+	else {
+		FireAnimation = false;
 	}
 }
 
